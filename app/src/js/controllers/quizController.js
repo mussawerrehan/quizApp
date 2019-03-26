@@ -44,7 +44,10 @@ angular.module('quizApp').controller('quizController', ['$scope', 'Quiz', 'Quest
     };
 
     $scope.changeAppMode = function (mode) {
-        $scope.quiz = new Quiz();
+        // the new quiz object should not be made when we are just cahnging th mode 
+        if(mode != appMode.ADDQUESTION && mode != appMode.SUCCESSQUIZ) { 
+            $scope.quiz = new Quiz();
+        }
         $scope.question = new Question();
         $scope.quizMode = mode;
         $scope.quizLoaded = false;
